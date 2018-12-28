@@ -1,5 +1,10 @@
 #include "Component.h"
 
+Component::Component(Component * parent)
+	: m_parent(parent)
+{
+}
+
 Component::~Component()
 {
 	for (auto &child : m_children)
@@ -11,6 +16,7 @@ Component::~Component()
 
 void Component::pushChild(Component* child)
 {
+	child->setParent(this);
 	m_children.push_back(child);
 }
 

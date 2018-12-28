@@ -9,6 +9,7 @@ class Component {
 public:
 	virtual const char* getTypeName() const = 0;
 
+	Component(Component* parent = nullptr);
 	virtual ~Component();
 
 	void pushChild(Component* child);
