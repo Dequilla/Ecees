@@ -6,6 +6,8 @@
 class EntitySystem : public System
 {
 public:
+	virtual ~EntitySystem() override;
+
 	virtual void start() override;
 	virtual void stop() override;
 

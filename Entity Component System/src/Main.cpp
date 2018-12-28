@@ -4,8 +4,6 @@
 #include "Systems/PositionsSystem.h"
 #include "Systems/SystemsHandler.h"
 
-// TODO: Replace all pointers with shared or unique (most likely shared)
-
 int main(int argc, char** argv)
 {
 	SystemsHandler systems;
@@ -16,15 +14,14 @@ int main(int argc, char** argv)
 	systems.registerSystem(new EntitySystem());
 	EntitySystem* es = systems.getSystems<EntitySystem>()[0];
 	
-	Entity e;
-	es->registerEntity(&e);
+	Entity* e = es->registerEntity(new Entity());
 
-	e.pushComponent(ps->registerComponent(new PositionComponent(3.f, 3.616f)));
-	e.getComponents<PositionComponent>()[0]->pushChild(new PositionComponent(3.f, 2.f));
-	e.getComponents<PositionComponent>(true)[1]->pushChild(new PositionComponent(3.f, 2.f));
+	e->pushComponent(ps->registerComponent(new PositionComponent(3.f, 3.616f)));
+	e->getComponents<PositionComponent>(false)[0]->pushChild(ps->registerComponent(new PositionComponent(3.f, 3.616f)));
+	e->getComponents<PositionComponent>(true)[1]->pushChild(ps->registerComponent(new PositionComponent(3.f, 3.616f)));
 
-	e.getComponents<PositionComponent>(true);
-	e.getComponents<PositionComponent>(false);
+	e->getComponents<PositionComponent>(false);
+	e->getComponents<PositionComponent>(true);
 
 
 	systems.start();
@@ -36,7 +33,7 @@ int main(int argc, char** argv)
 		systems.draw();
 		systems.endTick();
 
-		auto comps = e.getComponents<PositionComponent>();
+		auto comps = e->getComponents<PositionComponent>(false);
 		for (auto &comp : comps)
 		{
 			comp->setX(comp->getX() + 1337);

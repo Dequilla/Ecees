@@ -1,4 +1,4 @@
 # Entity Component System
-### V 0.1.0
+### V 0.1.1
 
 A simple ECS framework for games.

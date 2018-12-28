@@ -4,6 +4,8 @@
 class System
 {
 public:
+	virtual ~System() {};
+
 	virtual void start() {};
 	virtual void stop() {};
 

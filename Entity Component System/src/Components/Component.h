@@ -9,14 +9,16 @@ class Component {
 public:
 	virtual const char* getTypeName() const = 0;
 
+	virtual ~Component();
+
 	void pushChild(Component* child);
 	void setParent(Component* parent);
 
-	Component* getParent();
+	Component* getParent() const;
 
 	template<typename T>
-	std::vector<T*> getChildren(bool isRecursive = false);
-	std::vector<Component*> getAllChildren();
+	std::vector<T*> getChildren(bool isRecursive = false) const;
+	std::vector<Component*> getAllChildren() const;
 
 protected:
 	std::vector<Component*> m_children;
@@ -24,7 +26,7 @@ protected:
 };
 
 template<typename T>
-inline std::vector<T*> Component::getChildren(bool isRecursive)
+inline std::vector<T*> Component::getChildren(bool isRecursive) const
 {
 	std::vector<T*> children;
 	for (auto &child : m_children)

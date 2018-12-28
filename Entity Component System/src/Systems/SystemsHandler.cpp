@@ -1,5 +1,14 @@
 #include "SystemsHandler.h"
 
+SystemsHandler::~SystemsHandler()
+{
+	for (auto &system : m_systems)
+	{
+		delete system;
+		system = nullptr;
+	}
+}
+
 void SystemsHandler::registerSystem(System * system)
 {
 	m_systems.push_back(system);

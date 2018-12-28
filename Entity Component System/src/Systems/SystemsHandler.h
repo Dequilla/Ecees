@@ -7,10 +7,12 @@
 class SystemsHandler
 {
 public:
+	virtual ~SystemsHandler();
+
 	void registerSystem(System* system);
 	
 	template<typename T>
-	std::vector<T*> getSystems();
+	std::vector<T*> getSystems() const;
 
 	void start();
 	void stop();
@@ -26,7 +28,7 @@ protected:
 };
 
 template<typename T>
-inline std::vector<T*> SystemsHandler::getSystems()
+inline std::vector<T*> SystemsHandler::getSystems() const
 {
 	std::vector<T*> systems;
 

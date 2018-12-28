@@ -12,8 +12,8 @@ public:
 	void setY(double y);
 	void set(double x, double y);
 
-	double getX();
-	double getY();
+	double getX() const;
+	double getY() const;
 
 	REGISTER_COMPONENT_TYPE(PositionComponent);
 

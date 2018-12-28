@@ -9,7 +9,7 @@ public:
 	virtual ~Entity();
 
 	template<typename T>
-	std::vector<T*> getComponents(bool isRecursive = false);
+	std::vector<T*> getComponents(bool isRecursive = false) const;
 
 	void pushComponent(Component* component);
 
@@ -18,7 +18,7 @@ protected:
 };
 
 template<typename T>
-inline std::vector<T*> Entity::getComponents(bool isRecursive)
+inline std::vector<T*> Entity::getComponents(bool isRecursive) const
 {
 	std::vector<T*> results;
 	for (auto &pComp : m_components)
