@@ -39,13 +39,13 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -69,7 +69,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\bin_temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\bin_temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -84,6 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>ECEES_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,6 +116,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>ECEES_EXPORT;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -115,22 +124,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Components\Component.cpp" />
-    <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\Systems\EntitySystem.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Components\PositionComponent.cpp" />
-    <ClCompile Include="src\Systems\PositionsSystem.cpp" />
-    <ClCompile Include="src\Systems\SystemsHandler.cpp" />
+    <ClCompile Include="src\Ecees\Components\Component.cpp" />
+    <ClCompile Include="src\Ecees\Entity\Entity.cpp" />
+    <ClCompile Include="src\Ecees\IdFactory.cpp" />
+    <ClCompile Include="src\Ecees\Systems\EntitySystem.cpp" />
+    <ClCompile Include="src\Ecees\Components\PositionComponent.cpp" />
+    <ClCompile Include="src\Ecees\Systems\PositionsSystem.cpp" />
+    <ClCompile Include="src\Ecees\Systems\SystemsHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Components\Component.h" />
-    <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\Systems\EntitySystem.h" />
-    <ClInclude Include="src\Components\PositionComponent.h" />
-    <ClInclude Include="src\Systems\PositionsSystem.h" />
-    <ClInclude Include="src\Systems\System.h" />
-    <ClInclude Include="src\Systems\SystemsHandler.h" />
+    <ClInclude Include="src\Ecees\Components\Component.h" />
+    <ClInclude Include="src\Ecees\Ecees.h" />
+    <ClInclude Include="src\Ecees\Entity\Entity.h" />
+    <ClInclude Include="src\Ecees\IdFactory.h" />
+    <ClInclude Include="src\Ecees\Misc.h" />
+    <ClInclude Include="src\Ecees\Systems\EntitySystem.h" />
+    <ClInclude Include="src\Ecees\Components\PositionComponent.h" />
+    <ClInclude Include="src\Ecees\Systems\PositionsSystem.h" />
+    <ClInclude Include="src\Ecees\Systems\System.h" />
+    <ClInclude Include="src\Ecees\Systems\SystemsHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
