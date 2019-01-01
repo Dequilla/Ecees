@@ -25,7 +25,8 @@ void Component::pushChild(Component* child)
 
 void Component::setParent(Component* parent)
 {
-	parent->pushChild(this);
+	if (parent != nullptr)
+		parent->m_children.push_back(this);
 
 	if (m_parent != nullptr)
 		m_parent->detachChild(this->m_identifier);

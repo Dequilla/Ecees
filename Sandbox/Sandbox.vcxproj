@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\PhysicsBodyComponent.cpp" />
     <ClCompile Include="src\Entities\Actor.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
